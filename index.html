@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="theme-color" content="#3F51B5">
+	<title>kantin</title>
+	<link rel="stylesheet" href="packages/core/css/framework7.min.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="apple-touch-icon" href="img/f7-icon-square.png">
+	<link rel="icon" href="img/gzaicon.png">
+  <style>
+      .jedatombol {margin-right: 3%; margin-left: 3%;}
+      .marginkonten {margin-right: 10px; margin-left: 10px;}
+      .full {width: 96%; margin-left: 2%; margin-right: 2%; margin-top: 1%;}
+      .besar-icon {width: 60%;}
+      .slidergambar {width: 100%; height: 250px;}
+      .bg{background:#ffffff;}
+      .overlay-blueblack {
+          background: linear-gradient(to top, #1ad098 -10%, #2f18bd 100%, #a09999 121%);
+          background-position-x: initial;
+          background-position-y: initial;
+          background-size: 200% auto;
+          background-repeat-x: initial;
+          background-repeat-y: initial;
+          background-attachment: initial;
+          background-origin: initial;
+          background-clip: initial;
+          background-color: initial;
+      }
+  </style>
+</head>
+<body>
+<div id="app">
+	<div class="statusbar"></div>
+    <div class="view view-main view-init ios-edges" data-url="/" name="home">
+      <div class="page">
+          <div class="navbar no-shadow" style="border-style: none; color: #ffffff; background: linear-gradient(to top, #3F51B5  -10%, #1ad098 100%, #a09999 121%);">
+              <div class="navbar-inner">
+                  <div class="left">
+      				      	<a href="#" class="link icon-only panel-open" data-panel="left">
+        				      	<img class="navbar-brand-logo" src="img/gzaicon.png" title="e-kantin">
+      				      	</a>
+                  </div>
+                  <div class="title" style="left:-20px;">Kantin</div>
+                  <div class="right" id="menu_atas">
+                      <a href="#" class="link icon-only">
+                          <i class="f7-icons">bell_fill</i>
+                      </a>
+                      <a href="#" class="link icon-only" onclick="refresh()">
+                          <i class="f7-icons">reload</i>
+                      </a>
+                  </div>
+              </div>
+      	  </div>
+          <div class="bg" style="background: #ffffff">
+              <title>kantin</title>
+          </div>
+<div class="toolbar tabbar toolbar-bottom-md no-shadow tabbar-label" style="background: #3F51B5;border-style: none; font-color:blue; height: 65px;"> 
+    <div class="toolbar-inner">
+        <a href="#tab-1" class="tab-link tab-link-active">
+            <i class="icon f7-icons" style="margin-bottom: 5px;">home</i>
+            <span class="tabbar-label" style="font-size: 10px;">BERANDA</span>
+        </a>
+        <a href="#tab-2" class="tab-link">
+            <i class="icon material-icons" style="margin-bottom: 5px;">business</i>
+            <span class="tabbar-label" style="font-size: 10px;">LAPORAN</span>
+        </a>
+        <a href="#tab-3" class="tab-link">
+            <i class="icon material-icons" style="margin-bottom: 5px;">local_grocery_store</i>
+            <span class="tabbar-label" style="font-size: 10px;">KASIR</span>
+        </a>
+        <a href="#tab-4" class="tab-link">
+            <i class="icon f7-icons" style="margin-bottom: 5px;">person</i>
+            <span class="tabbar-label" style="font-size: 10px;">AKUN</span>
+        </a>
+    </div>
+</div>
+<div class="tabs-swipeable-wrap" >
+    <div class="tabs">
+        <div id="tab-1" class="page-content tab tab-active">
+            <div class="content-block-title jedatombol">
+              <div class="page">
+                  <div class="navbar"></div>
+                  <div class="toolbar toolbar-bottom tabbar" style="background:  #3F51B5; border-style: none; color: white" style="background:  #3F51B5; border-style: none; color: white">
+                      <div class="toolbar-inner">
+                          <a href="#tab-01" class="tab-link tab-link-active">Saldo</a>
+                          <a href="#tab-02" class="tab-link">KATALOG BARANG</a>
+                      </div>
+                  </div>
+                  <div class="tabs-swipeable-wrap">
+                      <div class="tabs">
+                          <div id="tab-01" class="page-content tab tab-active">
+                              <div class="block">
+                                  <!-- <form> -->
+                                      <div class="list">
+                                          <ul>
+                                              <li class="item-content item-input">
+                                                  <div class="item-inner">
+                                                    <div class="item-title item-label">Tempelkan Kartu Anda</div>
+                                                    <div class="item-input-wrap">
+                                                        <input type="text" id="txtkartu1" maxlength="10" onkeyup="saldo1()">
+                                                        <span class="input-clear-button" onclick="$('#bloksaldo1').html('Rp. 0,-');"></span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <div class="login-screen-title" id="bloksaldo1">Rp 0,-</div>
+                                            <input type="text" id="txttest" required>
+                                          </ul> 
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                          <div id="tab-02" class="page-content tab">
+                                <div class="block">
+                                  <div class="list no-chevron" id="listbarang"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>     
+            </div>
+        </div>
+        <div id="tab-2" class="page-content tab">
+                  <div class="list">
+                        <ul>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Dari Tanggal</div>
+                                    <div class="item-input-wrap">
+                                        <input name="date" type="date" placeholder="Please choose...">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                <div class="item-title item-label">Sampai Tanggal</div>
+                                    <div class="item-input-wrap">
+                                    <input name="date" type="date" placeholder="Please choose...">
+                                      </div>
+                                    </div>
+                                  <div class="col-5">
+                                    <a>
+                                        <i href="#" class="icon material-icons"   style="left: -5px; bottom: -5px;" onclick="">send</i>
+                                        </a>
+                                  </div>
+                            </li> 
+                          </ul>
+                    </div>
+            </div>
+
+        <div id="tab-3" class="page-content tab">
+                    <div class="list">
+                        <ul>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Tempelkan Kartu Anda</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" id="txtkartu" maxlength="10" onkeyup="saldo()">
+                                        <span class="input-clear-button" onclick="$('#bloksaldo').html('Rp. 0,-');"></span>
+                                    </div>
+                                    <div class="login-screen-title" id="bloksaldo">Rp 0,-</div>
+                                </div>
+                            </li>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                <div class="item-title item-label">Masukkan Nominal</div>
+                                  <div class="row no-gap">
+                                  <div class="col-90">
+                                    <div class="item-input-wrap">
+                                        <input type="text" id="txtnominal" readonly>
+                                      </div>
+                                    </div>
+                                  <div class="col-5">
+                                    <a>
+                                        <i href="#" class="icon material-icons"   style="left: -5px; bottom: -5px;" onclick="send()">send</i>
+                                        </a>
+                                  </div>
+                                    </div>
+                                    </div>
+                                  </li>
+                            
+                            <!-- <input type="text" id="txttest" required> -->
+                        </ul>
+                    </div>
+                        <div class="popup pin-popup">
+                          <div class="page">
+                            <div class="navbar">                                                                      
+                                <div class="navbar-inner" style="background:  #3F51B5; border-style: none; color: white">
+                                    <div class="left"><a href="#" class="link popup-close"><i class="icon f7-icons">arrow_left</i></a></div>
+                                </div>
+                            </div>
+                            <div class="page-content">
+                              <div class="block">
+                                <div class="item-title item-label" style="text-align: center;">Nominal Anda</div>
+                                <div class="item-input-wrap">
+                            <div class="login-screen-title" id="bloksaldopin">Rp 0,-</div>
+                          </div>
+                                <!-- <p style="text-align: center">
+                                        <img src="img/gza.png" style="width:40%; margin-left:auto; margin-right:auto; margin-bottom:3%; display:block">
+                                    </p>
+                               --></div>
+                              <div class="list">
+                                        <ul>
+                                            <li class="item-content item-input">
+                                                <div class="item-inner">
+                                                    <div class="item-title item-label" style="text-align: center;">Masukkan Pin Anda</div>
+                                                    <div class="item-input-wrap">
+                                                      <div class="row no-gap">
+                                                      <div class="col-95">
+                                                        <input type="password" style="text-align: center; font-size: 50px;" maxleght="6"; id="txtpin" readonly>
+                                                        <span class="input-clear-button"></span>
+                                                    </div>
+                                                    <div class="col-5">
+                                                      <a>
+                                                          <i href="#" class="icon material-icons"   style="left: -5px; bottom: -5px;" onclick="cekpin()">send</i>
+                                                          </a>
+                                                    </div>                                                    
+                                                    </div>
+                                                    <div>                                                         
+                                                    <div class="block">
+                                                    <p class="segmented segmented-raised">
+                                                        <td><button class="button" onclick="setangka2('1');">1</button></td>
+                                                        <button class="button" onclick="setangka2('2');">2</button>
+                                                        <button class="button" onclick="setangka2('3');">3</button>    
+                                                      </p>                                                                 
+                                                    <p class="segmented segmented-raised">
+                                                        <button class="button" onclick="setangka2('4');">4</button>
+                                                        <button class="button" onclick="setangka2('5');">5</button>
+                                                        <button class="button" onclick="setangka2('6');">6</button>    
+                                                      </p>
+                                                      <p class="segmented segmented-raised">
+                                                        <button class="button" onclick="setangka2('7');">7</button>
+                                                        <button class="button" onclick="setangka2('8');">8</button>
+                                                        <button class="button" onclick="setangka2('9');">9</button>    
+                                                      </p>
+                                                      <p class="segmented segmented-raised">
+                                                        <button class="button" onclick="$('#txtpin').val('');">C</button>
+                                                        <button class="button" onclick="setangka2('0');">0</button>
+                                                        <button class="button" onclick="setangka2('000');">000</button>
+                                                      </p>                                            
+                                                    </div>
+                                                </div>
+                                            </li>                    
+                                        </ul>
+                                    </div>
+                            </div>
+                          </div>
+                        </div>
+                  <div class="block">
+                  <p class="segmented segmented-raised">
+                      <td><button class="button" onclick="setangka('1');">1</button></td>
+                      <button class="button" onclick="setangka('2');">2</button>
+                      <button class="button" onclick="setangka('3');">3</button>    
+                    </p>                                                                 
+                  <p class="segmented segmented-raised">
+                      <button class="button" onclick="setangka('4');">4</button>
+                      <button class="button" onclick="setangka('5');">5</button>
+                      <button class="button" onclick="setangka('6');">6</button>    
+                    </p>
+                    <p class="segmented segmented-raised">
+                      <button class="button" onclick="setangka('7');">7</button>
+                      <button class="button" onclick="setangka('8');">8</button>
+                      <button class="button" onclick="setangka('9');">9</button>    
+                    </p>
+                    <p class="segmented segmented-raised">
+                      <button class="button" onclick="$('#txtnominal').val('');">C</button>
+                      <button class="button" onclick="setangka('0');">0</button>
+                      <button class="button" onclick="setangka('000');">000</button>    
+                    </p>                                            
+                  </div>
+                </div>
+                  <div id="tab-4" class="page-content tab">
+                      <div class="chip color-green full">
+                          <div class="chip-label">Akun</div>
+                      </div>
+                             <p style="text-align: center">
+                                <img src="img/profile.png" style="width:40%; margin-left:auto; margin-right:auto; margin-bottom:3%; display:block">
+                            </p>
+                  
+                            <p style="text-align: center">
+                                <button type="button" class="col-90 button button-fill color-red full" onclick="proseslogout()">Logout</button>
+                            </p>   
+                      
+                  </div>
+                      
+
+                      
+        
+            	<div class="page-content"  >
+                  <!-- BLOK LOGIN SCREEN -->
+                  <div class="login-screen" id="hal_login">
+                        <div class="page">
+                            <div class="page-content login-screen-content" style="border-style: none; color: #ffffff; background: linear-gradient(to top, #3F51B5  -10%, #1ad098 100%, #a09999 121%);">
+                                <div class="block">
+                                    <p style="text-align: center">
+                                        <img src="img/gza.png" style="width:40%; margin-left:auto; margin-right:auto; margin-bottom:3%; display:block">
+                                    </p>
+                                </div>
+                                <div class="login-screen-title">Login Kantin</div>
+                                <form>
+                                    <div class="list">
+                                        <ul>
+                                            <li class="item-content item-input">
+                                                <div class="item-inner">
+                                                    <div class="item-title item-label">ID</div>
+                                                    <div class="item-input-wrap">
+                                                        <input type="text" id="txtid">
+                                                        <span class="input-clear-button"></span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item-content item-input">
+                                                <div class="item-inner">
+                                                    <div class="item-title item-label">Password</div>
+                                                    <div class="item-input-wrap">
+                                                        <input type="password" id="txtpassword">
+                                                        <span class="input-clear-button"></span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                    
+                                        </ul>
+                                    </div>
+                                    <div class="block">
+                                        <p class="row">
+                                            <button type="button" class="col button button-fill color-red" onclick="proseslogin()">Login</button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                  </div>
+
+                  <!-- BLOK POPOVER -->
+                  <div class="popover popover-login">
+                      <div class="popover-inner">
+                          <div class="list">
+                              <ul>
+                                  <li>
+                                      <a href="#" class="list-button itemlink-popover-close" 
+                                          onclick="app.popover.close();app.loginScreen.open('#loginpeserta');">Peserta
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="#" class="list-button itemlink-popover-close" 
+                                          onclick="app.popover.close();app.loginScreen.open('#loginpetugas');">Petugas
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="popover popover-help">
+                      <div class="popover-inner">
+                          <div class="list">
+                              <ul>
+                                  <!-- <li><a href="#" class="list-button itemlink-popover-close" onclick="">Versi Aplikasi</a></li> -->
+                                  <li><a href="/tentang/" class="list-button itemlink-popover-close" onclick="app.popover.close('.popover-help')">Tentang Aplikasi</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="popover popover-editprofil">
+                      <div class="popover-inner">
+                          <form class="list">
+                              <div class="item-content item-input">
+                                  <div class="item-inner">
+                                      <div class="item-title item-label">Nama Baru</div>
+                                      <div class="item-input-wrap">
+                                          <input type="text" id="txtnama" placeholder="Nama Baru">
+                                          <span class="input-clear-button"></span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+                          <div class="block" style="margin-top: 3px;">
+                              <p class="row">
+                                  <button type="button" class="col button button-fill" onclick="updateprofil()">Update</button>
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="popover popover-profil">
+                      <div class="popover-inner">
+                          <div class="list">
+                              <ul>
+                                  <li><a href="#" class="list-button itemlink- popover-close" onclick="kameraprofil()">Kamera</a></li>
+                                  <li><a href="#" class="list-button item-link popover-close" onclick="galeriprofil()">Galeri</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="popover popover-gantipassword">
+                      <div class="popover-inner">
+                          <form class="list">
+                              <div class="item-content item-input">
+                                  <div class="item-inner">
+                                      <div class="item-title item-label">Password Baru</div>
+                                      <div class="item-input-wrap">
+                                          <input type="password" id="txtp1" placeholder="Isi Password Baru">
+                                          <span class="input-clear-button"></span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="item-content item-input">
+                                  <div class="item-inner">
+                                      <div class="item-title item-label">Konfirmasi</div>
+                                      <div class="item-input-wrap">
+                                          <input type="password" id="txtp2" placeholder="Konfirmasi Password">
+                                          <span class="input-clear-button"></span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+                          <div class="block" style="margin-top: 3px;">
+                              <p class="row">
+                                  <button type="button" class="col button button-fill" onclick="updatepassword()">Update</button>
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+
+            	</div>
+  	      </div>
+  	  </div>
+    </div>
+
+    <script src="packages/core/js/framework7.min.js"></script>
+  	<script src="js/routes.js"></script>
+  	<script src="js/app.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.md5.min.js"></script>
+    <script src="cordova.js"></script>
+
+
+  	<script>
+
+       if(localStorage.gz481 == '' || localStorage.gz481 == undefined){
+          app.loginScreen.open('#hal_login');
+        }
+
+        //proses login
+        function proseslogin(){
+            var u1 = $("#txtid").val();
+            var p1 = $("#txtpassword").val();
+            var u2;
+
+            if (u1 == ''|| p1 == ''){
+                app.dialog.alert('Akun Salah, Tidak Terdaftar,atau Tidak Aktif, Silahkan Ulang Kembali', 'Login Gagal');
+                  return;
+            }
+            app.dialog.preloader('Cek Login ...');
+            $.getJSON(api_login, {u1:u1, p1:p1}, function(result){
+                $.each(result, function(i, kolom){
+                    u2 = kolom.id;
+                });
+                app.dialog.close();
+
+                if(u1 == u2){
+                    localStorage.setItem('gz481', u1);
+                    window.location.reload();
+                }else{
+                    app.dialog.alert('Akun Salah, Tidak Terdaftar,atau Tidak Aktif, Silahkan Ulang Kembali', 'Login Gagal');
+                }
+            });
+        }
+
+        //fungsi saldo
+        function saldo(){
+          var tempel = $("#txtkartu").val();
+          var  n = tempel.length;
+          if(tempel.length == 10){
+              app.dialog.preloader('Cek saldo ...');
+              $.getJSON(get_saldo, {tempel: tempel}, function(result){
+                  $.each(result, function(i, kolom){
+                      jmlsaldo = kolom.saldo;
+                      localStorage.setItem('fadil', jmlsaldo);
+                      $("#bloksaldo").html("Rp. " + jmlsaldo + ",-");
+                  });
+                  app.dialog.close();
+              });
+          }else{
+              $("#bloksaldo").html("Rp. 0,-");
+          }
+        }
+
+        //fungsi cek saldo
+        function saldo1(){
+          var tempel = $("#txtkartu1").val();
+          var  n = tempel.length;
+          if(tempel.length == 10){
+              app.dialog.preloader('Cek saldo ...');
+              $.getJSON(get_saldo, {tempel: tempel}, function(result){
+                  $.each(result, function(i, kolom){
+                      jmlsaldo = kolom.saldo;
+                      localStorage.setItem('fadil', jmlsaldo);
+                      $("#bloksaldo1").html("Rp. " + jmlsaldo + ",-");
+                  });
+                  localStorage.removeItem("fadil");
+                  app.dialog.close();
+              });
+          }else{
+              $("#bloksaldo1").html("Rp. 0,-");
+          }
+        }
+
+        // fungsi reload barang
+        function reloadbarang(){
+            app.dialog.preloader('Load Barang ...');
+            var isi = "<ul>";
+            $.getJSON(get_barang, function(result){
+                $.each(result, function(i, kolom){
+                    isi = isi + '\
+                    <li>\
+                        <a href="#" class="item-link item-content">\
+                            <div class="item-media"><i class="icon material-icons">local_mall</i></div>\
+                            <div class="item-inner">\
+                                <div class="item-title">\
+                                    <div class="item-header">'+kolom.nm_barang+'</div>\
+                                    '+kolom.merk+'\
+                                    <div class="item-footer">'+kolom.satuan+'</div>\
+                                </div>\
+                                <div class="item-subtitle">Rp.'+kolom.hrg_jual+'</div>\
+                            </div>\
+                        </a>\
+                    </li>';
+                });
+                app.dialog.close();
+                $("#listbarang").html(isi + "</ul>");  
+            });
+        }
+        reloadbarang();
+
+        //fungsi barang
+        function barang(){
+            app.dialog.preloader('Load Barang ...');
+            app.popup.open(".barang-popup");
+            var isi = "<ul>";
+            $.getJSON(get_barang, function(result){
+                $.each(result, function(i, kolom){
+                    isi = isi + '\
+                    <li>\
+                        <a href="/editbarang/"'+kolom.id_barang+' class="item-link item-content">\
+                            <div class="item-media"><i class="icon material-icons">local_mall</i></div>\
+                            <div class="item-inner">\
+                                <div class="item-title">\
+                                    <div class="item-header">'+kolom.nm_barang+'</div>\
+                                    '+kolom.merk+'\
+                                    <div class="item-footer">'+kolom.satuan+'</div>\
+                                </div>\
+                                <div class="item-subtitle">Rp.'+kolom.hrg_jual+'</div>\
+                            </div>\
+                        </a>\
+                    </li>';
+                });
+                app.dialog.close();
+                $("#listbarang1").html(isi + "</ul>");  
+            });
+        }
+        reloadbarang();        
+        
+      //fungsi angka tombol 1
+      function setangka(f){
+        var a = $("#txtnominal").val();
+        $("#txtnominal").val(a + f);
+      }
+      // fungsi angka tombol 2
+      function setangka2(g){
+        var a = $("#txtpin").val();
+        $("#txtpin").val(a + g);
+      }
+      //fungsi mengirim send 
+      function send(){
+        var a = $("#txtnominal").val();
+        var b = localStorage.fadil;
+         if(parseInt(b) >= parseInt(a)){
+            $("#bloksaldopin").html("Rp. " + $("#txtnominal").val());
+            //var h = $("#txtnominal").val();
+
+            app.popup.open(".pin-popup");
+         }else
+           app.dialog.alert('saldo tidak mencukupi');
+        }
+        // fungsi pin
+        function cekpin(){
+          var idsantri= '';
+          var emoney = $("#txtkartu").val();
+          var pin = $("#txtpin").val();
+          app.dialog.preloader('Cek PIN ...');
+          $.getJSON(get_cekpin, {emoney: emoney, pin: pin}, function(result){
+              $.each(result, function(i, kolom){
+                  idsantri = kolom.id_santri;
+                  // console.log(idsantri);
+              });
+              app.dialog.close();
+              if(idsantri != ''){
+                  var harga = $("#txtnominal").val();
+                  $.ajax({
+                        url: get_keluar,
+                        method: "POST",
+                        data: {idsantri: idsantri, harga: harga},
+                        cache: "false", 
+                        success: function(x){
+                            app.dialog.close();
+                            if(x == 1){
+                                app.dialog.alert("Transaksi Berhasil di Lakukan","Sukses");
+                                localStorage.removeItem("fadil");
+                                window.location = '';
+                            }else{app.dialog.alert("Transaksi Gagal di Lakukan","Gagal");}
+                            
+                        }
+                    })
+              }else{
+                app.dialog.alert('Pin Anda Salah');
+              }
+          });      
+        }
+
+        //fungsi
+        function proseslogout(){
+            app.dialog.confirm("Anda Yakin Ingin Logout ?", "Logout",
+                function(){logoff();},function(){}
+            );   
+        }
+
+        function logoff(){
+            localStorage.removeItem('gz481');
+            localStorage.removeItem('fadil');
+            // localStorage.removeItem('LoqG801k');
+            // localStorage.removeItem('MktG801t');
+            // localStorage.removeItem('XxbS784g');
+            window.location = '';
+        }
+       function refresh(){
+           window.location = '';
+        }
+
+    </script>
+</body>
+</html>
